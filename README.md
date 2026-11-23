@@ -20,3 +20,7 @@ So how does it generate a true sine wave from a basic square-wave oscillator? Th
 Here is the captured waveform measured using a 10× oscilloscope probe and a 1:136 voltage divider. A reading of 580 mV corresponds to 789V peak-to-peak (394.5 V peak), which — after accounting for the oscilloscope's input impedance — equals roughly ~410–420V even with a nearly discharged 3.6V battery.
 
 ![alt text](scope.png)
+
+Here are the sharp pulses from the GM tube with virtually zero power-supply noise. This demonstrates the ultra-quiet operation of the supply, allowing preamplifier sensitivity to be pushed all the way up without SNR degradation.
+
+![alt text](scope1.png)
