@@ -1,6 +1,6 @@
 # Power Supply for Geiger-Muller Radiation Counters
 
-Most industrial and commercial Geiger-Müller (GM) radiation detection tubes operate with high sensitivity at a 350–450 V plateau. This encourages manufacturers to build low-cost boost converters based on inductive flyback principles (V=LdIdt), which capture high-voltage (HV) spikes and accumulate — as well as filter — them using a large reservoir capacitance. However, the simplest circuitry introduces a major disadvantage: HV spikes cause highly sensitive GM tubes to false-trigger, resulting in erroneous counts.
+Most industrial and commercial Geiger-Müller (GM) radiation detection tubes operate with high sensitivity at a 350–450 V plateau. This encourages manufacturers to build low-cost boost converters based on inductive flyback principles ( $V = L {dI \over dt}$ ), which capture high-voltage (HV) spikes and accumulate — as well as filter — them using a large reservoir capacitance. However, the simplest circuitry introduces a major disadvantage: HV spikes cause highly sensitive GM tubes to false-trigger, resulting in erroneous counts.
 To mitigate HV spikes, square-wave high-frequency (HF) transformer boosters are also commonly used. However, this approach still does not prevent false triggering, as these converters act like miniature noise transmitters that degrade the signal-to-noise ratio (SNR) of the counter's preamplifier stage.
 
 ![alt text](pcb.png)
