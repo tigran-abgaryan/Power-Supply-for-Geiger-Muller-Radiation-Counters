@@ -1,14 +1,22 @@
-# Power Supply for Geiger Muller Radiation Counters
+# Power Supply for Geiger-Muller Radiation Counters
 
 Most industrial and commercial Geiger-Müller (GM) radiation detection tubes operate with high sensitivity at a 350–450 V plateau. This encourages manufacturers to build low-cost boost converters based on inductive flyback principles (V=LdIdt), which capture high-voltage (HV) spikes and accumulate — as well as filter — them using a large reservoir capacitance. However, the simplest circuitry introduces a major disadvantage: HV spikes cause highly sensitive GM tubes to false-trigger, resulting in erroneous counts.
 To mitigate HV spikes, square-wave high-frequency (HF) transformer boosters are also commonly used. However, this approach still does not prevent false triggering, as these converters act like miniature noise transmitters that degrade the signal-to-noise ratio (SNR) of the counter's preamplifier stage.
 
+![alt text](pcb.png)
+
 To solve this, our lab designed a simple, energy-efficient HV converter that operates as quietly as possible using a true sine-wave boost topology. The main oscillator is built around a HEF4093 quad NAND Schmitt trigger: the first gate generates a fixed 45–50 kHz square wave, the second acts as an inverter and buffer for the upper BD139 push-pull driver, the third functions as a power switch (working alongside Gate 1), and the fourth serves as an inverter and buffer for the lower BD139 driver.
+
+![alt text](principal_circuit.png)
 
 The circuit uses a feedback loop built around an S8050 transistor: when the output voltage exceeds the clamping Zener diode’s working knee — which has a soft characteristic — and begins injecting microamps into the transistor's base, the S8050 pulls down the inputs of IC Gates 1 and 3, shutting down voltage pumping completely. As a result, it operates as a highly efficient boost converter that draws almost no current during most of its operating cycle.
 
 If you connect a multimeter in milliammeter (mA) mode in series with the circuit, you will observe brief current bursts (from 0 to 15-20 mA) 1–2 times per second. This demonstrates that the pump wakes momentarily to compensate for voltage sag across the large reservoir capacitor caused by leakage, keeping the output voltage rock solid.
 The truth table below explains the operating logic:
 
+![alt text](ttable.png)
+
 So how does it generate a true sine wave from a basic square-wave oscillator? The key lies in the transformer's primary winding and capacitor C4 connected in parallel: together, they form an LC resonant tank that smooths the square wave into a pure sine wave across the secondary terminals. A major advantage of this resonant circuit is that the LC tank acts as a voltage multiplier — even with a 1:70 turns ratio, it delivers nearly three times higher output voltage than a conventional transformer booster.
 Here is the captured waveform measured using a 10× oscilloscope probe and a 1:136 voltage divider. A reading of 580 mV corresponds to 789V peak-to-peak (394.5 V peak), which — after accounting for the oscilloscope's input impedance — equals roughly ~410–420V even with a nearly discharged 3.6V battery.
+
+![alt text](scope.png)
